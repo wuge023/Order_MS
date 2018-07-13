@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.etc.dao.OrderRelationMapper" >
+  	<!-- hashmap相当于java.util.Map -->
+	<select id="selectOrder" resultType="hashmap" parameterType="hashmap">
+		select orderinfo.*,cname,mobile
+        from orderinfo inner join customer 
+        on orderinfo.cid = customer.cid
+        where 1=1
+        <if test="orderNO!=null and orderNO!='' ">
+        	and orderNO = #{orderNO}
+        </if>
+        <if test="cname!=null and cname!='' ">
+        	and cname like CONCAT('%',#{cname},'%')
+        </if>
+        <if test="status!=null and status!='' ">
+        	and orderinfo.status = #{status}
+        </if>
+	</select>
+	<select id="selectOrderDetail" resultType="hashmap" parameterType="hashmap">
+		select detail.*, cname, gname, price
+        from detail 
+        inner join orderinfo on orderinfo.oid=detail.oid
+        inner join goods on goods.gid = detail.gid
+        inner join customer on customer.cid = orderinfo.cid
+        where detail.oid = #{oid,jdbcType=VARCHAR}
+	</select>
+</mapper>

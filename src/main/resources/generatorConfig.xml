@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+  <!-- <classPathEntry
+        location="C:\Users\fzj\.m2\repository\mysql\mysql-connector-java\5.1.22\mysql-connector-java-5.1.22.jar" /> -->
+  <context id="Mall" >
+    <jdbcConnection 
+	    driverClass="com.mysql.jdbc.Driver" 
+	    connectionURL="jdbc:mysql://localhost:3306/shorttermcase" 
+	    userId="root" 
+	    password="2936283" />
+    <javaModelGenerator targetPackage="com.etc.entity" targetProject="Mall" />
+    <sqlMapGenerator targetPackage="com.etc.mapper" targetProject="Mall" />
+    <javaClientGenerator targetPackage="com.etc.dao" targetProject="Mall" type="XMLMAPPER" />
+    <!-- type有三个值：ANNOTATEDMAPPER、MIXEDMAPPER、XMLMAPPER -->
+    <!--  数据库　表名　生成名domainObjectName="" -->
+    <table schema="shorttermcase" tableName="goods">
+    	<generatedKey column="gid" sqlStatement="mysql" identity="true" />  
+    </table>
+    <table schema="shorttermcase" tableName="orderinfo">
+    	<generatedKey column="oid" sqlStatement="mysql" identity="true" />  
+    </table>
+    <table schema="shorttermcase" tableName="customer">
+    	<generatedKey column="cid" sqlStatement="mysql" identity="true" />  
+    </table>
+    <table schema="shorttermcase" tableName="detail">
+    	<generatedKey column="did" sqlStatement="mysql" identity="true" />  
+    </table>
+    <table schema="shorttermcase" tableName="admin">
+    	<generatedKey column="aid" sqlStatement="mysql" identity="true" />  
+    </table>
+  </context>
+</generatorConfiguration>
